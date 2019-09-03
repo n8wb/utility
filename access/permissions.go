@@ -34,28 +34,37 @@ const (
 	DestroyBiome
 )
 
+//IsOneOfThese checks to see if any of the other given permissions match the first
+//permission given
+func IsOneOfThese(perm access.Permission, perms ...access.Permission) bool {
+	for _, p := range perms {
+		if p == perm {
+			return true
+		}
+	}
+	return false
+}
 
 //HasPermission checks whether the given role has the given permission
 func HasPermission(role Role, perm Permission) bool {
-
 	switch role {
 	case Owner:
-		if isOneOfThese(perm, MakeOrgOwner, DeleteOrg, ModifyOrgAdmin, ModifyOrgOwner) {
+		if IsOneOfThese(perm, MakeOrgOwner, DeleteOrg, ModifyOrgAdmin, ModifyOrgOwner) {
 			return true
 		}
 		fallthrough
 	case Admin:
-		if isOneOfThese(perm, MakeOrgAdmin, MakeOrgUser, ModifyOrgUser, UpdateOrg, DeleteOrgRequest) {
+		if IsOneOfThese(perm, MakeOrgAdmin, MakeOrgUser, ModifyOrgUser, UpdateOrg, DeleteOrgRequest) {
 			return true
 		}
 		fallthrough
 	case User:
-		if isOneOfThese(perm, ModifyOrgGuest, MakeOrgGuest, ViewOrgRequest) {
+		if IsOneOfThese(perm, ModifyOrgGuest, MakeOrgGuest, ViewOrgRequest) {
 			return true
 		}
 		fallthrough
 	case Guest:
-		if isOneOfThese(perm, ViewOrgMembers) {
+		if IsOneOfThese(perm, ViewOrgMembers) {
 			return true
 		}
 	}
