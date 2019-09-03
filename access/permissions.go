@@ -1,4 +1,4 @@
-package authz
+package access
 
 type Role string
 
