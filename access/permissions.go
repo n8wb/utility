@@ -23,7 +23,7 @@ type Role string
 const (
 	Owner Role = "owner"
 	Admin Role = "admin"
-	User Role = "user"
+	User  Role = "user"
 	Guest Role = "guest"
 )
 
@@ -50,6 +50,12 @@ const (
 
 	CreateBiome
 	DestroyBiome
+
+	RunTestnet
+	StopTestnet
+	DeleteTestnet
+
+	ViewPreviousTestnets
 )
 
 //IsOneOfThese checks to see if any of the other given permissions match the first
