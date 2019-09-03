@@ -36,7 +36,7 @@ const (
 
 //IsOneOfThese checks to see if any of the other given permissions match the first
 //permission given
-func IsOneOfThese(perm access.Permission, perms ...access.Permission) bool {
+func IsOneOfThese(perm Permission, perms ...Permission) bool {
 	for _, p := range perms {
 		if p == perm {
 			return true
