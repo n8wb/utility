@@ -79,12 +79,12 @@ func HasPermission(role Role, perm Permission) bool {
 		}
 		fallthrough
 	case Admin:
-		if IsOneOfThese(perm, MakeOrgAdmin, MakeOrgUser, ModifyOrgUser, UpdateOrg, DeleteOrgRequest) {
+		if IsOneOfThese(perm, MakeOrgAdmin, MakeOrgUser, ModifyOrgUser, UpdateOrg, DeleteOrgInvite, CreateOrgInvite) {
 			return true
 		}
 		fallthrough
 	case User:
-		if IsOneOfThese(perm, ModifyOrgGuest, MakeOrgGuest, ViewOrgRequest) {
+		if IsOneOfThese(perm, ModifyOrgGuest, MakeOrgGuest, ViewOrgInvite) {
 			return true
 		}
 		fallthrough
