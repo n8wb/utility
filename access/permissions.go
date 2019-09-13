@@ -43,8 +43,8 @@ const (
 	UpdateOrg
 	DeleteOrg
 
-	DeleteOrgRequest
-	ViewOrgRequest
+	DeleteOrgInvite
+	ViewOrgInvite
 
 	ViewOrgMembers
 
