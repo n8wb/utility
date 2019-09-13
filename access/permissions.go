@@ -56,6 +56,7 @@ const (
 	DeleteTestnet
 
 	ViewPreviousTestnets
+	CreateOrgInvite
 )
 
 //IsOneOfThese checks to see if any of the other given permissions match the first

@@ -1,6 +1,6 @@
 package utils
 
-import(
+import (
 	log "github.com/sirupsen/logrus"
 	"github.com/whiteblock/go.uuid"
 	"runtime"
@@ -15,7 +15,7 @@ func GetUUIDString() string {
 	return uid.String()
 }
 
-func LogErrorN(err error,n int) error {
+func LogErrorN(err error, n int) error {
 	if err == nil {
 		return err // do nothing if the given err is nil
 	}
@@ -29,10 +29,9 @@ func LogErrorN(err error,n int) error {
 	return err
 }
 
-
 // LogError takes in an error, logs that error and returns that error.
 // Used to help reduce code clutter and unify the error handling in the code.
 // Has no effect if err == nil
 func LogError(err error) error {
-	return LogErrorN(err,2)
+	return LogErrorN(err, 2)
 }
