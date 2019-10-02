@@ -21,7 +21,7 @@ type Client struct {
 	sem           *semaphore.Weighted
 }
 
-func (c *Client) Init() error {
+func (c *Client) Init(callback func(msg amqp.Delivery) error) error {
 	c.once = &sync.Once{}
 	if c.MaxConcurreny < 1 {
 		return fmt.Errorf("MaxConcurreny must be atleast 1")
@@ -30,6 +30,7 @@ func (c *Client) Init() error {
 	if c.MaxRetries < 1 {
 		return fmt.Errorf("MaxRetries must be atleast 1")
 	}
+	c.callback = callback
 	return c.init()
 }
 
