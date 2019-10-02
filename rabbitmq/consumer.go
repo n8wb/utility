@@ -34,13 +34,14 @@ func (c *Client) Init(callback func(msg amqp.Delivery) error) error {
 	return c.init()
 }
 
-func (c *Client) createQueue() error {
+// CreateQueue creates the coresponding queue with the given parameters
+func (c *Client) CreateQueue(durable, autoDelete, exclusive, noWait bool, args amqp.Table) error {
 	ch, err := c.conn.Channel()
 	if err != nil {
 		return utils.LogError(err)
 	}
 	defer ch.Close()
-	_, err = ch.QueueDeclare(c.Queue, true, false, false, false, nil)
+	_, err = ch.QueueDeclare(c.Queue, durable, autoDelete, exclusive, noWait, args)
 	return utils.LogError(err)
 }
 
@@ -133,9 +134,5 @@ func (c *Client) loop() {
 
 func (c *Client) init() (err error) {
 	c.conn, err = amqp.Dial(c.QueueURL)
-	if err != nil {
-		return utils.LogError(err)
-	}
-	return utils.LogError(c.createQueue())
-
+	return utils.LogError(err)
 }
