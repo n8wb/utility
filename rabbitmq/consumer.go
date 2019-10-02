@@ -100,23 +100,9 @@ func (c *Client) kickBackMessage(msg amqp.Delivery) {
 	utils.LogError(msg.Reject(false))
 }
 
-func (c *Client) tryFetchMessage() {
+func (c *Client) handleMessage(msg amqp.Delivery) {
 	defer c.sem.Release(1)
-	ch, err := c.conn.Channel()
-	if err != nil {
-		utils.LogError(err)
-	}
-	defer ch.Close()
-	msg, exists, err := ch.Get(c.Queue, false)
-	if err != nil {
-		utils.LogError(err)
-		log.Panic(err)
-		return
-	}
-	if !exists {
-		return
-	}
-	err = c.callback(msg)
+	err := c.callback(msg)
 	if err != nil {
 		utils.LogError(err)
 		go c.kickBackMessage(msg)
@@ -126,9 +112,19 @@ func (c *Client) tryFetchMessage() {
 }
 
 func (c *Client) loop() {
-	for {
+	ch, err := c.conn.Channel()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer ch.Close()
+
+	msgs, err := ch.Consume(c.Queue, "", false, false, false, false, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for msg := range msgs {
 		c.sem.Acquire(context.Background(), 1)
-		go c.tryFetchMessage()
+		go c.handleMessage(msg)
 	}
 }
 
