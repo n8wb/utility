@@ -70,6 +70,14 @@ func FlagNotProvidedError(cmd *cobra.Command, flagName string) {
 	PrintErrorFatal(fmt.Sprintf(`missing required flag: "%s"`, flagName))
 }
 
+//CheckError calls PrintErrorFatal if the given error is not nil
+func CheckError(err error) {
+	if err == nil {
+		return
+	}
+	PrintErrorFatal(err)
+}
+
 func PrintErrorFatal(err interface{}) {
 	PrintStringError(fmt.Sprint(err))
 	os.Exit(1)
