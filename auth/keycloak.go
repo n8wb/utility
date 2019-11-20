@@ -20,9 +20,10 @@ package auth
 import (
 	"errors"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
 	"net/http"
 	"strings"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 var (
