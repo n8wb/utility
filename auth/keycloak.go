@@ -18,25 +18,52 @@
 package auth
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"net/http"
 	"strings"
 
+	"github.com/coreos/go-oidc"
 	"github.com/dgrijalva/jwt-go"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
 	ErrMissingJWT = errors.New("missing JWT in authorization header")
 	InvalidHeader = errors.New("invalid auth header")
+	InvalidClaim  = errors.New("invalid claim")
 )
 
 type UserContext struct {
-	KeycloakID string
-	Username   string
-	Email      string
+	KeycloakID string `json:"sub"`
+	Username   string `json:"preferred_username"`
+	Email      string `json:"email"`
 }
 
+func GetUserContext(token *oidc.IDToken) (*UserContext, error) {
+	userContext := &UserContext{}
+
+	err := token.Claims(userContext)
+	if err != nil {
+		log.Errorf("%s: %s", InvalidClaim, err)
+		return nil, InvalidClaim
+	}
+	return userContext, nil
+}
+
+func VerifyToken(verifier *oidc.IDTokenVerifier, ctx context.Context, header string) (*oidc.IDToken, error) {
+	bearerToken := strings.Split(header, "Bearer ")
+	tokenString := bearerToken[1]
+
+	token, err := verifier.Verify(ctx, tokenString)
+	if err != nil {
+		log.Errorf("Failed to verify ID Token: %s", err)
+	}
+	return token, nil
+}
+
+// TODO deprecated
 // ExtractJwt will attempt to extract and return the jwt from the auth header
 func ExtractJwt(r *http.Request) (string, error) {
 	tokenString := r.Header.Get("Authorization")
@@ -51,6 +78,7 @@ func ExtractJwt(r *http.Request) (string, error) {
 	return splt[1], nil
 }
 
+// TODO deprecated
 func GetValidatedToken(publicKey string, access_token string) (*jwt.Token, error) {
 	key, err := jwt.ParseRSAPublicKeyFromPEM([]byte(publicKey))
 	if err != nil {
@@ -69,6 +97,7 @@ func GetValidatedToken(publicKey string, access_token string) (*jwt.Token, error
 	return token, nil
 }
 
+// TODO deprecated
 func GetUserInfo(token *jwt.Token) (*UserContext, error) {
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		userInfo := &UserContext{
