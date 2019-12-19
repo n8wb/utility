@@ -27,6 +27,22 @@ const (
 	Guest Role = "guest"
 )
 
+const (
+	Owners string = "owners"
+	Admins string = "admins"
+	Users  string = "users"
+	Guests string = "guests"
+)
+
+func GetGroupForRole(role Role) string {
+	groups := make(map[Role]string)
+	groups[Guest] = Guests
+	groups[User] = Users
+	groups[Admin] = Admins
+	groups[Owner] = Owners
+	return groups[role]
+}
+
 type Permission int64
 
 const (
