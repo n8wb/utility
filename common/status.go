@@ -24,4 +24,6 @@ type Status struct {
 	Def       string `json:"def"`
 	Phase     string `json:"phase"`
 	StepsLeft int    `json:"stepsLeft"`
+	Message   string `json:"message,omitempty"`
+	Finished  bool   `json:"finished"`
 }
