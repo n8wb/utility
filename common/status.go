@@ -19,11 +19,11 @@
 package common
 
 type Status struct {
-	Test      string `json:"test"`
-	Org       string `json:"org"`
-	Def       string `json:"def"`
-	Phase     string `json:"phase"`
-	StepsLeft int    `json:"stepsLeft"`
+	Test      string `json:"test" db:"test_id"`
+	Org       string `json:"org" db:"organization_id"`
+	Def       string `json:"def" db:"definition_id"`
+	Phase     string `json:"phase" db:"phase"`
+	StepsLeft int    `json:"stepsLeft" db:"steps_left"`
 	Message   string `json:"message,omitempty"`
-	Finished  bool   `json:"finished"`
+	Finished  bool   `json:"finished" db:"finished"`
 }
