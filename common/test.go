@@ -18,6 +18,8 @@
 
 package common
 
+import "time"
+
 // Test represents a whiteblock test
 type Test struct {
 	ID             string    `json:"id" db:"id"`
