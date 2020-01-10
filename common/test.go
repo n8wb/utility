@@ -20,6 +20,7 @@ package common
 
 import (
 	"database/sql"
+	"encoding/json"
 	"time"
 )
 
@@ -67,4 +68,8 @@ func (ts TestSQL) Test() Test {
 		out.Name = ts.Name.String
 	}
 	return out
+}
+
+func (ts TestSQL) MarshalJSON() ([]byte, error) {
+	return json.Marshal(ts.Test())
 }
