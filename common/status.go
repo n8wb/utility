@@ -24,6 +24,6 @@ type Status struct {
 	Def       string `json:"def" db:"definition_id"`
 	Phase     string `json:"phase" db:"phase"`
 	StepsLeft int    `json:"stepsLeft" db:"steps_left"`
-	Message   string `json:"message,omitempty"`
+	Message   string `json:"message,omitempty" db:"message"`
 	Finished  bool   `json:"finished" db:"finished"`
 }
