@@ -26,5 +26,6 @@ type Test struct {
 	DefinitionID   string    `json:"definitionID" db:"definition_id"`
 	OrganizationID string    `json:"organizationID" db:"organization_id"`
 	CreatedAt      time.Time `json:"createdAt" db:"created_at"`
+	Status         string    `json:"status" db:"status"`
 	DestroyedAt    time.Time `json:"destroyedAt" db:"destroyed_at"`
 }
