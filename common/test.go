@@ -28,4 +28,5 @@ type Test struct {
 	CreatedAt      time.Time `json:"createdAt" db:"created_at"`
 	Status         string    `json:"status" db:"status"`
 	DestroyedAt    time.Time `json:"destroyedAt" db:"destroyed_at"`
+	Name           string    `json:"name" db:"name"`
 }
