@@ -24,6 +24,13 @@ import (
 	"time"
 )
 
+type TestDefinition struct {
+	ID         string    `json:"id" db:"id"`
+	KeycloakID string    `json:"userID" db:"keycloak_id"`
+	OrgID      string    `json:"orgID" db:"organization_id"`
+	CreatedAt  time.Time `json:"createdAt" db:"created_at"`
+}
+
 // Test represents a whiteblock test
 type Test struct {
 	ID             string    `json:"id" db:"id"`
