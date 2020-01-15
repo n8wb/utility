@@ -20,12 +20,9 @@ package auth
 import (
 	"context"
 	"errors"
-	"fmt"
-	"net/http"
 	"strings"
 
 	"github.com/coreos/go-oidc"
-	"github.com/dgrijalva/jwt-go"
 	log "github.com/sirupsen/logrus"
 )
 
