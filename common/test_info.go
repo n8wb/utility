@@ -26,5 +26,5 @@ type TestInfo struct {
 	OrganizationID string    `json:"organizationID" db:"organization_id"`
 	CreatedAt      time.Time `json:"createdAt" db:"created_at"`
 	DestroyedAt    time.Time `json:"destroyedAt" db:"destroyed_at"`
-	SpecFile       []byte    `json:"specFile"` //the definition spec
+	SpecFile       string    `json:"specFile"` //the definition spec
 }
