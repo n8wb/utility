@@ -8,15 +8,15 @@ package common
 
 import "time"
 
+type RunningInstance struct {
+	Domain string `json:"domain"`
+	Ports  []int  `json:"ports"`
+}
+
 type TestInfo struct {
 	Name string `json:"name"`
 
-	Domains []string `json:"domains"` //domain names
-
-	// Ports contains the exposed ports,
-	// len(Ports) == len(Domains), and Domains[n] should have all of the
-	// ports in Ports[n] exposed. (Note: may not be always up, but will be up atleast once)
-	Ports [][]int `json:"ports"` //exposed ports,
+	Instances []RunningInstance `json:"instances"`
 
 	// Files contains file name -> url to fetch it
 	Files       map[string]string `json:"files"`
