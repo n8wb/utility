@@ -30,7 +30,9 @@ type Test struct {
 	Name           string    `json:"name" db:"name"`
 }
 
-// Test represents a whiteblock test
+// TestSQL is the SQL representation of a Test, this structure should only be used
+// when working with Tests in the Database, when Marshalled into JSON, this structure
+// decays into Test
 type TestSQL struct {
 	ID             string         `json:"id" db:"id"`
 	DefinitionID   string         `json:"definitionID" db:"definition_id"`
