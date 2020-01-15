@@ -6,7 +6,7 @@
 package common
 
 type ForkResponse struct {
-	DefinitionID string
-	TestIDs      []string
-	Domains      []string
+	DefinitionID string   `json:"definitionID"`
+	TestIDs      []string `json:"testIDs"`
+	Domains      []string `json:"domains"`
 }
