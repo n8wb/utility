@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Pallinder/go-randomdata"
 	log "github.com/sirupsen/logrus"
 	"github.com/whiteblock/go.uuid"
 )
@@ -76,4 +77,11 @@ func Memconv(mem string, defaultMulti int64) (int64, error) {
 	}
 
 	return i * multiplier, nil
+}
+
+func CreateDNSSubdomains(n int) (dns []string) {
+	for i := 0; i < n; i++ {
+		dns = append(dns, strings.ToLower(randomdata.SillyName()))
+	}
+	return
 }

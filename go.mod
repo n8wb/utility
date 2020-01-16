@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	firebase.google.com/go v3.10.0+incompatible
+	github.com/Pallinder/go-randomdata v1.2.0
 	github.com/Whiteblock/go-prettyjson v0.0.0-20180920040306-f579f869bbfe
 	github.com/coreos/go-oidc v2.1.0+incompatible
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible

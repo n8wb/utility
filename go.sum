@@ -5,6 +5,8 @@ cloud.google.com/go v0.38.0/go.mod h1:990N+gfupTy94rShfmMCWGDn0LpTmnzTp2qbd1dvSR
 firebase.google.com/go v3.10.0+incompatible h1:GVdqx1+ZmPg9qd2S+8K9NHgkUUmZsGJxDq56IW5ciqs=
 firebase.google.com/go v3.10.0+incompatible/go.mod h1:xlah6XbEyW6tbfSklcfe5FHJIwjt8toICdV5Wh9ptHs=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/Pallinder/go-randomdata v1.2.0 h1:DZ41wBchNRb/0GfsePLiSwb0PHZmT67XY00lCDlaYPg=
+github.com/Pallinder/go-randomdata v1.2.0/go.mod h1:yHmJgulpD2Nfrm0cR9tI/+oAgRqCQQixsA8HyRZfV9Y=
 github.com/Whiteblock/go-prettyjson v0.0.0-20180920040306-f579f869bbfe h1:Z+egUXEY2T13Y+KAT+Y83htHDUyc8fbjMLTvK47brvM=
 github.com/Whiteblock/go-prettyjson v0.0.0-20180920040306-f579f869bbfe/go.mod h1:APOLd9lx46UxL2VQgy3GF/TVR2HvC3phQiSiFc9o32E=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=
