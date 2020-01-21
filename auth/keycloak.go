@@ -8,6 +8,7 @@ package auth
 import (
 	"context"
 	"errors"
+	"fmt"
 	"strings"
 
 	"github.com/coreos/go-oidc"
@@ -27,6 +28,9 @@ type UserContext struct {
 }
 
 func GetUserContext(token *oidc.IDToken) (*UserContext, error) {
+	if token == nil {
+		return nil, ErrMissingJWT
+	}
 	userContext := &UserContext{}
 
 	err := token.Claims(userContext)
@@ -44,6 +48,7 @@ func VerifyToken(verifier *oidc.IDTokenVerifier, ctx context.Context, header str
 	token, err := verifier.Verify(ctx, tokenString)
 	if err != nil {
 		log.Errorf("Failed to verify ID Token: %s", err)
+		return nil, fmt.Errorf("Failed to verify ID Token: %s", err)
 	}
 	return token, nil
 }
