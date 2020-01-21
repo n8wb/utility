@@ -27,6 +27,9 @@ type UserContext struct {
 }
 
 func GetUserContext(token *oidc.IDToken) (*UserContext, error) {
+	if token == nil {
+		return nil, ErrMissingJWT
+	}
 	userContext := &UserContext{}
 
 	err := token.Claims(userContext)
