@@ -22,11 +22,13 @@ func (h logrusHook) Levels() []logrus.Level {
 }
 
 func (h logrusHook) Fire(entry *logrus.Entry) error {
+	h.t.Helper()
 	h.t.Log(entry.String())
 	return nil
 }
 
 func NewTestingLogger(t *testing.T) *logrus.Logger {
+	t.Helper()
 	out := logrus.New()
 	out.SetLevel(logrus.TraceLevel)
 	out.SetOutput(ioutil.Discard)
