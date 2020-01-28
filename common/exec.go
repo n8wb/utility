@@ -7,8 +7,11 @@
 package common
 
 type Exec struct {
-	Test       string   `json:"test"`       //testid
-	Target     string   `json:"target"`     //the entity to attach to
-	Command    []string `json:"command"`    //the command to run
-	Privileged bool     `json:"privileged"` //should extra privileges be granted
+	Test        string   `json:"test"`       //testid
+	Target      string   `json:"target"`     //the entity to attach to
+	Command     []string `json:"command"`    //the command to run
+	Privileged  bool     `json:"privileged"` //should extra privileges be granted
+	Interactive bool     `json:"interactive"`
+	TTY         bool     `json:"tty"`
+	Detach      bool     `json:"detach"`
 }
