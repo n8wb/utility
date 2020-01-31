@@ -24,6 +24,7 @@ type ExecInfo struct {
 
 type ExecAttach struct {
 	ExecInfo
-	TTY    bool `json:"tty"`
-	Detach bool `json:"detach"`
+	TTY         bool `json:"tty"`
+	Detach      bool `json:"detach"`
+	Interactive bool `json:"interactive"`
 }
