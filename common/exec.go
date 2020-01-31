@@ -21,3 +21,9 @@ type ExecInfo struct {
 	ID   string `json:"id"`
 	Host string `json:"host"`
 }
+
+type ExecAttach struct {
+	ExecInfo
+	TTY    bool `json:"tty"`
+	Detach bool `json:"detach"`
+}
