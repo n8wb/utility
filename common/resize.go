@@ -7,6 +7,8 @@
 package common
 
 type Resize struct {
-	Height uint `json:"height"`
-	Width  uint `json:"width"`
+	Height uint   `json:"height"`
+	Width  uint   `json:"width"`
+	Host   string `json:"host"`
+	ExecID string `json:"execID"`
 }
